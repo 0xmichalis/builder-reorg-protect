@@ -5,9 +5,21 @@ error UnexpectedCoinbase();
 
 contract ReorgProtect {
     function sendToCoinbase(address validator) public payable {
-        if (block.coinbase != validator) {
-            revert UnexpectedCoinbase();
+        assembly {
+            // Compare block.coinbase with validator address
+            let cb := coinbase()
+            if iszero(eq(cb, validator)) {
+                // Revert with UnexpectedCoinbase
+                let selector := 0xf16ab8f7
+                mstore(0x0, selector)
+                revert(0x1c, 0x04)
+            }
+
+            // Perform low-level call to send value to block.coinbase
+            let success := call(gas(), cb, callvalue(), 0, 0, 0, 0)
+
+            // If the call failed, revert the transaction
+            if iszero(success) { revert(0, 0) }
         }
-        block.coinbase.call{value: msg.value}("");
     }
 }

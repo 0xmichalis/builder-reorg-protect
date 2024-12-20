@@ -35,4 +35,4 @@ contract ReorgProtectTest is Test {
         vm.expectRevert(abi.encodeWithSignature("UnexpectedCoinbase()"));
         reorgProtect.sendToCoinbase{value: 1 ether}(wrongCoinbase);
     }
-} 
+}
