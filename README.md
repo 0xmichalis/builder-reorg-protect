@@ -16,12 +16,6 @@ $ forge build
 $ forge test
 ```
 
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
 ### Deploy
 
 ```shell

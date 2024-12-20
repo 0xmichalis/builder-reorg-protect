@@ -24,6 +24,7 @@ contract ReorgProtectTest is Test {
 
     function testSendToCorrectCoinbase() public {
         reorgProtect.sendToCoinbase{value: 1 ether}(coinbase);
+        vm.snapshotGasLastCall("sendToCoinbase");
 
         assertEq(coinbase.balance, 1 ether);
     }
