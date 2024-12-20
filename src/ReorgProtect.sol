@@ -8,6 +8,6 @@ contract ReorgProtect {
         if (block.coinbase != validator) {
             revert UnexpectedCoinbase();
         }
-        block.coinbase.transfer(msg.value);
+        block.coinbase.call{value: msg.value}("");
     }
 }
