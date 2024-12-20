@@ -8,6 +8,7 @@ contract ReorgProtect {
         assembly {
             // Compare block.coinbase with validator address
             let cb := coinbase()
+
             if iszero(eq(cb, validator)) {
                 // Revert with UnexpectedCoinbase
                 let selector := 0xf16ab8f7
@@ -17,9 +18,6 @@ contract ReorgProtect {
 
             // Perform low-level call to send value to block.coinbase
             let success := call(gas(), cb, callvalue(), 0, 0, 0, 0)
-
-            // If the call failed, revert the transaction
-            if iszero(success) { revert(0, 0) }
         }
     }
 }
