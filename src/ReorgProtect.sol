@@ -19,14 +19,6 @@ contract ReorgProtect {
 
             // Perform low-level call to send value to block.coinbase
             let success := call(gas(), cb, callvalue(), 0, 0, 0, 0)
-
-            // Check if call was successful
-            if iszero(success) {
-                // Revert with ETHTransferFailed
-                let selector := 0xb12d13eb
-                mstore(0x0, selector)
-                revert(0x1c, 0x04)
-            }
         }
     }
 }
