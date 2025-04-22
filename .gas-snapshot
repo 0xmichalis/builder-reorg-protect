@@ -1,0 +1,2 @@
+ReorgProtectTest:testSendToCorrectCoinbase() (gas: 49859)
+ReorgProtectTest:testSendToWrongCoinbaseReverts() (gas: 15901)

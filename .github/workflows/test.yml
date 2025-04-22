@@ -3,13 +3,9 @@ name: CI
 on:
   push:
   pull_request:
-  workflow_dispatch:
-
-env:
-  FOUNDRY_PROFILE: ci
 
 jobs:
-  check:
+  ci:
     strategy:
       fail-fast: true
 
@@ -22,8 +18,6 @@ jobs:
 
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
-        with:
-          version: nightly
 
       - name: Show Forge version
         run: |
@@ -41,5 +35,5 @@ jobs:
 
       - name: Run Forge tests
         run: |
-          forge test -vvv
+          forge snapshot --check -vvv
         id: test
