@@ -1,2 +1,3 @@
-ReorgProtectTest:testSendToCorrectCoinbase() (gas: 49859)
-ReorgProtectTest:testSendToWrongCoinbaseReverts() (gas: 15901)
+ReorgProtectTest:testSendToContractWithoutReceiveFails() (gas: 66991)
+ReorgProtectTest:testSendToCorrectCoinbase() (gas: 49169)
+ReorgProtectTest:testSendToWrongCoinbaseReverts() (gas: 15206)
